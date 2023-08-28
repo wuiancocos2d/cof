@@ -1,0 +1,34 @@
+{
+    "miniprogramRoot": "dist/",
+    "description": "taro vue3 wx",
+    "setting": {
+        "urlCheck": true,
+        "es6": false,
+        "enhance": false,
+        "compileHotReLoad": false,
+        "postcss": false,
+        "minified": false,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "coverView": false,
+        "showShadowRootInWxmlPanel": false,
+        "packNpmRelationList": [],
+        "ignoreUploadUnusedFiles": true
+    },
+    "compileType": "miniprogram",
+    "srcMiniprogramRoot": "dist/",
+    "condition": {},
+    "editorSetting": {
+        "tabIndent": "insertSpaces",
+        "tabSize": 4
+    },
+    "libVersion": "3.0.1",
+    "packOptions": {
+        "ignore": [],
+        "include": []
+    },
+    "appid": "wx2530668a9fba9839"
+}
