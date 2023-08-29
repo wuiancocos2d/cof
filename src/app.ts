@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import './app.less'
 import './tailwindcss.css'
-import {createPinia} from "pinia";
+import 'taro-ui-vue3/dist/style/index.scss'
 import {setupStore} from "@/store";
 const App = createApp({
   onShow (options) {
