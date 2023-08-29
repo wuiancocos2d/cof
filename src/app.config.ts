@@ -9,7 +9,6 @@ export default defineAppConfig({
     navigationBarTextStyle: 'black'
   },
   tabBar: {
-    custom: true,
     list: tabBarPages
   }
 })

@@ -1,14 +1,19 @@
 <template>
   <view class="index">
-    <text>{{ msg }}</text>
+    <CoffeeShopOrder></CoffeeShopOrder>
   </view>
 </template>
 
-<script>
+<script lang="ts">
 import { ref } from 'vue'
 import './index.less'
+import {CoffeeShopOrder} from "@/components/order/orderComponents";
 
 export default {
+  components: {
+    CoffeeShopOrder
+  },
+
   setup () {
     const msg = ref('Hello world')
     return {

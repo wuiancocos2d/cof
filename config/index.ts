@@ -17,7 +17,9 @@ export default defineConfig(async (merge, { command, mode }) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: [],
+    plugins: [
+      'taro-plugin-tailwind'
+    ],
     defineConstants: {
     },
     copy: {
