@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import './app.less'
 import './tailwindcss.css'
+import './style/index.scss'
 import 'taro-ui-vue3/dist/style/index.scss'
 import {setupStore} from "@/store";
 const App = createApp({

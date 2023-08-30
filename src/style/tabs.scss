@@ -1,0 +1,12 @@
+.at-tabs__item-underline {
+  background-color: #1F6A3F !important;
+  width: 6px !important;
+}
+.at-tabs__item--active {
+ color: #000000 !important;
+}
+.at-tabs--vertical .at-tabs__item-underline {
+  position: absolute !important;
+  left: 0 !important;
+}
+@import "taro-ui-vue3/dist/style/index.scss";

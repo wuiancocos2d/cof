@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="pt-1 container">
     <AtTabs
       :current="current_category"
       :tabList="category_tabs"
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, ref} from "vue";
+import {defineComponent, onMounted, ref, unref} from "vue";
 import {AtTabs, AtTabsPane} from "taro-ui-vue3";
 import {getAllShopCateGory} from "@/components/order/coffee-category-list/api";
 
@@ -29,12 +29,24 @@ export default defineComponent({
     AtTabs,
     AtTabsPane
   },
-  setup(){
+  emits: ['category'],
+  setup(_,{emit}){
     const category_tabs = ref([])
     const current_category = ref<string>()
-    async function handleCategoryClick(){}
-    onMounted(()=>{
+    async function handleCategoryClick(tabV){
+      current_category.value = tabV
+    }
+    function emitCategory(){
+      const current = unref(category_tabs)?.find(item=> item.id === unref(current_category))
+      if(!current) return
+      emit('category',current)
+    }
+    function getCategory(){
       category_tabs.value = getAllShopCateGory()
+    }
+    onMounted(()=>{
+      getCategory()
+      emitCategory()
     })
     return {
       category_tabs,
@@ -45,6 +57,6 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>
