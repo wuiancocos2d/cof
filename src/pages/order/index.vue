@@ -1,6 +1,7 @@
 <template>
-  <view class="index">
+  <view class="coffee-order">
     <CoffeeShopOrder></CoffeeShopOrder>
+    <CoffeeCategoryList></CoffeeCategoryList>
   </view>
 </template>
 
@@ -8,10 +9,12 @@
 import { ref } from 'vue'
 import './index.less'
 import {CoffeeShopOrder} from "@/components/order/orderComponents";
+import CoffeeCategoryList from "@/components/order/coffee-category-list/coffeeCategoryList.vue";
 
 export default {
   components: {
-    CoffeeShopOrder
+    CoffeeCategoryList,
+    CoffeeShopOrder,
   },
 
   setup () {
