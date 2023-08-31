@@ -1,12 +1,22 @@
 <template>
   <view>
-    <view></view>
+    <view class="title">
+
+    </view>
   </view>
 </template>
 
 <script>
+import {defineComponent} from "vue";
+
 export default defineComponent({
-  name: "categoryList"
+  name: "categoryList",
+  props: {
+    category: {
+      required: true
+    }
+  },
+  setup(){}
 })
 </script>
 
