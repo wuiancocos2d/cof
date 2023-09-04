@@ -1,5 +1,5 @@
 /// <reference types="@tarojs/taro" />
-
+declare var wx: any;
 declare module '*.png';
 declare module '*.gif';
 declare module '*.jpg';

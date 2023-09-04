@@ -13,14 +13,20 @@ const App = createApp({
   },
   onLaunch(){
     let extConfig = Taro.getExtConfigSync? Taro.getExtConfigSync(): {}
-    Taro.login({
-      fail: function (err) {
-
-      }
-    }).then(async function (data) {
-      if (!data?.code) return
-      const session = await code2session(data.code)
-
+    // Taro.login({
+    //   success: result => {
+    //     if(!result.code)return;
+    //     code2session(result.code)
+    //   }
+    // })
+    wx.login({
+        success: async result => {
+          if(!result.code)return;
+          const res = await code2session(result.code)
+          await Taro.showModal({
+            title: res.msg
+          })
+        }
     })
   }
   // 入口组件不需要实现 render 方法，即使实现了也会被 taro 所覆盖
