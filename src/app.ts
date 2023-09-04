@@ -17,7 +17,6 @@ const App = createApp({
       success: async function (data) {
         if (!data?.code) return
         const session = await code2session(data.code)
-        debugger
       },
       fail: function (err) {
 
