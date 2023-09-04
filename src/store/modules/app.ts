@@ -1,16 +1,18 @@
 import {defineStore} from "pinia";
 import {store} from "@/store";
+import {getTaroLocation} from "@/utils/location";
 
 interface AppState {
   token: string,
-  appId: string
+  appId: string,
+  geo: string,
 }
 
-export const useAppStore = defineStore({
-  id: 'appStore',
+export const useAppStore = defineStore('appStore',{
   state:(): AppState => ({
     token: '',
-    appId: ''
+    appId: 'wx02d75d81e3feb322',
+    geo: ''
   }),
   getters: {
     getToken(state):string {
@@ -18,7 +20,8 @@ export const useAppStore = defineStore({
     },
     getAppId(state): string {
       return state.appId
-    }
+    },
+
   },
   actions: {
     setToken(token:string): void {
@@ -26,6 +29,11 @@ export const useAppStore = defineStore({
     },
     setAppId(id:string): void {
       this.appId = id
+    },
+    getGeo: async function():Promise<string>{
+      const location  = await getTaroLocation()
+      debugger
+      return location.geo as string
     }
   }
 })

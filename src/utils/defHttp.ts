@@ -41,7 +41,7 @@ function parseDept(opt) {
   const param = Object.assign({}, transform, opt)
   const preFixUrl = param.usePrefix ? param.domain + param.url : param.url
   const appStore = useAppStoreWithOut()
-  param.url = preFixUrl + opt?.url + '?token=' + appStore.getToken + '&appid=' + appStore.getAppId
+  param.url = preFixUrl + '?token=' + appStore.getToken + '&appid=' + appStore.getAppId
   if (typeof param.success === 'undefined') {
     param.success = function (res) {
       return Promise.resolve(res)

@@ -7,5 +7,4 @@ export async function code2session(code) {
     data: {
       code
     }})
-
 }

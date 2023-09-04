@@ -10,5 +10,11 @@ export default defineAppConfig({
   },
   tabBar: {
     list: tabBarPages
-  }
+  },
+  permission: {
+    "scope.userLocation": {
+      desc: '需要获取您的地理位置，请您授权'
+    }
+  },
+  requiredPrivateInfos: ['getLocation']
 })
