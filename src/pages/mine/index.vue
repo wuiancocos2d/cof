@@ -1,19 +1,28 @@
 <template>
   <view class="index">
-    <text>{{ msg }}</text>
+
   </view>
 </template>
 
-<script>
-import { ref } from 'vue'
+<script lang="ts">
+import {defineComponent, onMounted, ref} from 'vue'
 import './index.less'
+import Taro from "@tarojs/taro";
 
-export default {
+export default defineComponent({
   setup () {
     const msg = ref('Hello world')
+    async function validLogin(){
+      const token = Taro.getStorageSync('token')
+      if(token) return;
+      
+    }
+    onMounted(()=>{
+
+    })
     return {
       msg
     }
   }
-}
+})
 </script>

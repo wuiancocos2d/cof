@@ -13,20 +13,16 @@ const App = createApp({
   },
   onLaunch(){
     let extConfig = Taro.getExtConfigSync? Taro.getExtConfigSync(): {}
-    // Taro.login({
-    //   success: result => {
-    //     if(!result.code)return;
-    //     code2session(result.code)
-    //   }
-    // })
-    wx.login({
-        success: async result => {
-          if(!result.code)return;
-          const res = await code2session(result.code)
-          await Taro.showModal({
-            title: res.msg
-          })
-        }
+    Taro.login({
+      success: async (result) => {
+        if (!result.code) return;
+        const sessionInfo = await code2session(result.code)
+        if (!sessionInfo?.data) return
+        Taro.setStorageSync('openid', sessionInfo.data.openid || '')
+        Taro.setStorageSync('unionid', sessionInfo.data.unionid || '')
+        Taro.setStorageSync('token', sessionInfo.data.token || '')
+        if (!sessionInfo?.data?.token) return;
+      }
     })
   }
   // 入口组件不需要实现 render 方法，即使实现了也会被 taro 所覆盖
