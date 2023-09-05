@@ -4,6 +4,7 @@ import {useAppStoreWithOut} from "@/store/modules/app";
 
 const transform = {
   usePrefix: true,
+  useSuffix: true,
   domain: HTTPSetting.DOMAIN
 }
 
@@ -39,9 +40,10 @@ function createDefHttp() {
 
 function parseDept(opt) {
   const param = Object.assign({}, transform, opt)
-  const preFixUrl = param.usePrefix ? param.domain + param.url : param.url
   const appStore = useAppStoreWithOut()
-  param.url = preFixUrl + '?token=' + appStore.getToken + '&appid=' + appStore.getAppId
+  const preFixUrl = param.usePrefix ? param.domain + param.url : param.url
+  const suffix = param.useSuffix ? '?token=' + appStore.getToken + '&appid=' + appStore.getAppId : ''
+  param.url = preFixUrl +suffix
   if (typeof param.success === 'undefined') {
     param.success = function (res) {
       return Promise.resolve(res)

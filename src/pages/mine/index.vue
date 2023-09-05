@@ -15,10 +15,10 @@ export default defineComponent({
     async function validLogin(){
       const token = Taro.getStorageSync('token')
       if(token) return;
-      
+      await Taro.redirectTo({url: '/pages/login/index'})
     }
-    onMounted(()=>{
-
+    onMounted(async ()=>{
+      await validLogin()
     })
     return {
       msg

@@ -27,4 +27,6 @@ export const tabBarPages = [
 const pages = [
   'pages/login/index'
 ]
-export const wxPages: string[] = pages.concat(tabBarPages.map(item => item.pagePath))
+export const wxPages: string[] = (function(){
+  return tabBarPages.map(item => item.pagePath).concat(pages)
+})()
