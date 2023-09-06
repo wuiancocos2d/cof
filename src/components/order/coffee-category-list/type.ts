@@ -10,6 +10,20 @@ export interface Category {
   sort: number
   timestamp: number
 }
-export interface ShopItem {
-
+export interface Product {
+  cover: string;
+  fee: number;
+  intro: string;
+  isHot: number;
+  isNew: number;
+  name: string;
+  productId: string;
+  sort: number;
+  tags: string;
+}
+export interface AllShopItem {
+  name: string;
+  productCategoryId: string;
+  products: Product[];
+  sort: number
 }

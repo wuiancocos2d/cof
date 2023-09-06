@@ -1,7 +1,7 @@
 import {defHttp} from "@/utils/defHttp";
-import {Category, ShopItem} from "@/components/order/coffee-category-list/type";
+import {Category, AllShopItem} from "@/components/order/coffee-category-list/type";
 
-export function productAll(shopId: string): Promise<ShopItem[]>{
+export function productAll(shopId: string): Promise<AllShopItem[]>{
   return defHttp.get({
     url:'/tt/app/product/all',
     data: {shopId}

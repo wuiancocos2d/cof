@@ -1,19 +1,19 @@
 <template>
   <view class="pt-1 container">
     <AtTabs
-      :current="current_category"
+      :current="current"
       :tabList="category_tabs"
       tabDirection='vertical'
       @click="handleCategoryClick"
     >
       <AtTabsPane
-        v-for="category in current_category"
+        v-for="(category,index) in category_tabs"
         tabDirection='vertical'
-        :key="category.code"
-        :current="current_category"
-        :index="category.code">
-          <view>
-            <CategoryList :filter="category"></CategoryList>
+        :key="category.productCategoryId"
+        :current="current"
+        :index="index">
+          <view v-for="product in category.products" :key="product.productId">
+            <CategoryListItem :product="product"/>
           </view>
       </AtTabsPane>
     </AtTabs>
@@ -23,43 +23,39 @@
 <script lang="ts">
 import {defineComponent, onMounted, ref, unref} from "vue";
 import {AtTabs, AtTabsPane} from "taro-ui-vue3";
-import { productCategory} from "@/api/order";
+import {productAll} from "@/api/order";
 import {getShopID} from "@/config/constance"
-import CategoryList from './categoryList/CategoryList.vue'
-export default defineComponent({
+import {useDidShow} from "@tarojs/taro";
+import CategoryListItem from "@/components/order/coffee-category-list/categoryListItem/CategoryListItem.vue";
+import {AllShopItem} from "@/components/order/coffee-category-list/type";
+export default {
   name: "CoffeeCategoryList",
   components: {
     AtTabs,
     AtTabsPane,
-    CategoryList
+    CategoryListItem
   },
-  emits: ['category'],
-  setup(_,{emit}){
-    const category_tabs = ref([])
-    const current_category = ref<string>()
+  setup(){
+    const category_tabs = ref<AllShopItem[]>([])
+    const current = ref<number>(0)
     async function handleCategoryClick(tabV){
-      current_category.value = tabV
-    }
-    function emitCategory(){
-      const current = unref(category_tabs)?.find(item=> item.id === unref(current_category))
-      if(!current) return
-      emit('category',current)
+      current.value = tabV
     }
     async function getCategory(){
-      category_tabs.value = await productCategory(getShopID())
-      debugger
+      const res = await productAll(getShopID())
+      if(!Array.isArray(res)) return
+      category_tabs.value = res.map(item=> ({...item,title: item.name}))
     }
-    onMounted(async ()=>{
+    useDidShow(async ()=>{
       await getCategory()
-      emitCategory()
     })
     return {
       category_tabs,
-      current_category,
+      current,
       handleCategoryClick
     }
   }
-})
+}
 </script>
 
 <style scoped lang="scss">
