@@ -9,10 +9,12 @@
       <AtTabsPane
         v-for="category in current_category"
         tabDirection='vertical'
-        :key="category.id"
+        :key="category.code"
         :current="current_category"
-        :index="category.id">
-          <view></view>
+        :index="category.code">
+          <view>
+            <CategoryList :filter="category"></CategoryList>
+          </view>
       </AtTabsPane>
     </AtTabs>
   </view>
@@ -21,13 +23,15 @@
 <script lang="ts">
 import {defineComponent, onMounted, ref, unref} from "vue";
 import {AtTabs, AtTabsPane} from "taro-ui-vue3";
-import {getAllShopCateGory} from "@/components/order/coffee-category-list/api";
-
+import { productCategory} from "@/api/order";
+import {getShopID} from "@/config/constance"
+import CategoryList from './categoryList/CategoryList.vue'
 export default defineComponent({
-  name: "coffeeCategoryList",
+  name: "CoffeeCategoryList",
   components: {
     AtTabs,
-    AtTabsPane
+    AtTabsPane,
+    CategoryList
   },
   emits: ['category'],
   setup(_,{emit}){
@@ -41,11 +45,12 @@ export default defineComponent({
       if(!current) return
       emit('category',current)
     }
-    function getCategory(){
-      category_tabs.value = getAllShopCateGory()
+    async function getCategory(){
+      category_tabs.value = await productCategory(getShopID())
+      debugger
     }
-    onMounted(()=>{
-      getCategory()
+    onMounted(async ()=>{
+      await getCategory()
       emitCategory()
     })
     return {
