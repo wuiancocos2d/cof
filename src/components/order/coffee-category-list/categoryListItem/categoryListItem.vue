@@ -1,19 +1,23 @@
 <template>
   <view>
-    <view class="wrapper">
-      <view class="cover"><img :src="product?.cover" :alt="product.name"></view>
-      <view class="info">
-        <view class="productTitle">{{product?.name}}</view>
-        <view class="tags">
-          <view class="tag" v-for="tag in getTags()" :key="tag">
-            {{tag}}
-          </view>
+    <view class="wrapper h-24 relative">
+      <view class="flex flex-row flex-nowrap">
+        <view :style="{width: '82px'}" class="cover">
+          <image class="w-full" :style="{width: '82px', height: '82px'}" :src="product?.cover" :alt="product.name"/>
         </view>
-        <div class="price">
-          ￥{{numberToPrice(product?.fee)}}
-        </div>
+        <view class="info grow">
+          <view class="productTitle">{{ product?.name }}</view>
+          <view class="tags">
+            <view class="tag flex flex-row flex-nowrap" v-for="tag in getTags()" :key="tag">
+              {{ tag }}
+            </view>
+          </view>
+          <div class="price">
+            ￥{{ numberToPrice(product?.fee) }}
+          </div>
+        </view>
       </view>
-      <view class="action">
+      <view class="action absolute">
         <button v-if="state === 'add'">选规格</button>
 
       </view>
@@ -34,12 +38,14 @@ export default defineComponent({
       type: Object as PropType<Product>
     },
   },
-  setup(props){
+  setup(props) {
     const state = ref('add')
-    function getTags(): string[]{
-      if(!isString(props.product?.tags)) return []
+
+    function getTags(): string[] {
+      if (!isString(props.product?.tags)) return []
       return props.product?.tags.split(';')
     }
+
     return {
       state,
       getTags,
