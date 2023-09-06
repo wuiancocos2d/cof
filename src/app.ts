@@ -16,12 +16,14 @@ const App = createApp({
     Taro.login({
       success: async (result) => {
         if (!result.code) return;
-        const sessionInfo = await code2session(result.code)
-        if (!sessionInfo?.data) return
-        Taro.setStorageSync('openid', sessionInfo.data.openid || '')
-        Taro.setStorageSync('unionid', sessionInfo.data.unionid || '')
-        Taro.setStorageSync('token', sessionInfo.data.token || '')
-        if (!sessionInfo?.data?.token) return;
+        const sessionInfo = await code2session(result.code).catch((err)=>{
+          console.log(err)
+        })
+        if (!sessionInfo) return
+        Taro.setStorageSync('openid', sessionInfo.openid || '')
+        Taro.setStorageSync('unionid', sessionInfo.unionid || '')
+        Taro.setStorageSync('token', sessionInfo.token || '')
+        if (!sessionInfo?.token) return;
       }
     })
   }

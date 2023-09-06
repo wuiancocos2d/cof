@@ -1,6 +1,7 @@
 import Taro from "@tarojs/taro";
 import {HTTPSetting} from "@/config/http";
 import {useAppStoreWithOut} from "@/store/modules/app";
+import {isFunction} from "@/utils/is";
 
 const transform = {
   usePrefix: true,
@@ -20,10 +21,10 @@ function createDefHttp() {
       Taro.request({
           ...opt,
           success: (res) => {
-            resolve(res?.data)
+            isFunction(opt?.success) ? opt.success(res):resolve(res?.data)
           },
           fail: (err)=>{
-            reject(err)
+            isFunction(opt?.fail) ? opt.fail(err) : reject(err)
           }
         }
       )
@@ -46,7 +47,9 @@ function parseDept(opt) {
   param.url = preFixUrl +suffix
   if (typeof param.success === 'undefined') {
     param.success = function (res) {
-      return Promise.resolve(res)
+      const statusSuccess = res?.statusCode === 200 && res?.data?.status === 200
+      debugger
+      return statusSuccess ? Promise.resolve(res?.data) : Promise.reject(res?.data)
     }
   }
   return param

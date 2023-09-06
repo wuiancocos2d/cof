@@ -1,6 +1,6 @@
 <template>
   <view class="login">
-<!--    <AtForm>-->
+    <AtForm>
       <AtInput
         name='phone'
         title='手机号'
@@ -20,7 +20,7 @@
       <AtButton open-type="getPhoneNumber"  @click="getPhoneNum">自动获取手机号</AtButton>
       <AtButton formType='submit' @click="sendQCode">发送验证码</AtButton>
       <AtButton formType='submit' @click="onSubmit">提交</AtButton>
-<!--    </AtForm>-->
+    </AtForm>
   </view>
 </template>
 

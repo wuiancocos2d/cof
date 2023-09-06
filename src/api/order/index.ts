@@ -1,6 +1,7 @@
 import {defHttp} from "@/utils/defHttp";
+import {Category, ShopItem} from "@/components/order/coffee-category-list/type";
 
-export function productAll(shopId: string){
+export function productAll(shopId: string): Promise<ShopItem[]>{
   return defHttp.get({
     url:'/tt/app/product/all',
     data: {shopId}
@@ -13,7 +14,8 @@ export function productList({geo,shopId}:{geo:string,shopId:string}){
     data:{geo,shopId}
   })
 }
-export function productCategory(shopId:string){
+
+export function productCategory(shopId:string):Promise<Category[]>{
   return defHttp.get({
     url:'/tt/app/product/category',
     data: {shopId}
