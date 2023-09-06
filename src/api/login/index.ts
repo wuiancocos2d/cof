@@ -8,9 +8,9 @@ export function authSMS(mobile: string){
   })
 }
 
-export function authLogin({username,password}){
+export function authLogin(data){
   return defHttp.post({
     url: '/tt/app/auth/login',
-    data:{username,password}
+    data
   })
 }

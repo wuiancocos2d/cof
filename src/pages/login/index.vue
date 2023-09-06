@@ -1,6 +1,6 @@
 <template>
   <view class="login">
-    <AtForm>
+<!--    <AtForm>-->
       <AtInput
         name='phone'
         title='手机号'
@@ -17,18 +17,19 @@
         :value="qCode"
         @change="(v)=>changeFormVal(v,'qCode')"
       />
-      <AtButton open-type="getPhoneNumber" v-if="!userPhone" @click="getPhoneNum">自动获取手机号</AtButton>
+      <AtButton open-type="getPhoneNumber"  @click="getPhoneNum">自动获取手机号</AtButton>
       <AtButton formType='submit' @click="sendQCode">发送验证码</AtButton>
       <AtButton formType='submit' @click="onSubmit">提交</AtButton>
-    </AtForm>
+<!--    </AtForm>-->
   </view>
 </template>
 
 <script lang="ts">
-import {reactive, ref, toRef, unref} from 'vue'
+import {reactive, ref, toRefs, unref} from 'vue'
 import './index.less'
 import {AtForm} from "taro-ui-vue3";
 import {authLogin, authSMS} from "@/api/login";
+import {parseLoginParam} from "@/utils/login";
 
 export default {
   components: {
@@ -44,19 +45,18 @@ export default {
     }
     async function getPhoneNum(){}
     async function onSubmit(){
-      const res = await authLogin({username:formModel.userPhone,password:formModel.qCode})
-
+      const res = await authLogin(parseLoginParam(formModel.userPhone,formModel.qCode))
+      debugger
     }
     function changeFormVal(v,refV){
       formModel[refV] = v
-
     }
     return {
       sendQCode,
       getPhoneNum,
       onSubmit,
       changeFormVal,
-      ...toRef(formModel)
+      ...toRefs(formModel)
     }
   }
 }
