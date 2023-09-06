@@ -9,10 +9,11 @@
       <AtTabsPane
         v-for="(category,index) in category_tabs"
         tabDirection='vertical'
+        class="h-full"
         :key="category.productCategoryId"
         :current="current"
         :index="index">
-          <view v-for="product in category.products" :key="product.productId">
+          <view v-for="product in category.products" :key="product.productId" class="h-24">
             <CategoryListItem :product="product"/>
           </view>
       </AtTabsPane>
