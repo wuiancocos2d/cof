@@ -1,13 +1,10 @@
 <template>
-  
+
 </template>
 
 <script lang="ts">
 export default {
-  name: "ProductOption",
-  props: {
-
-  }
+  name: "Dialog"
 }
 </script>
 

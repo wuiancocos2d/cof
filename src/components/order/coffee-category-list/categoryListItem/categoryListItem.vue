@@ -1,6 +1,6 @@
 <template>
-  <view>
-    <view class="wrapper h-24 relative">
+  <view class="relative">
+    <view class="wrapper h-24">
       <view class="flex flex-row flex-nowrap">
         <view :style="{width: '82px'}" class="cover">
           <image class="w-full" :style="{width: '82px', height: '82px'}" :src="product?.cover" :alt="product.name"/>
@@ -16,9 +16,9 @@
             ￥{{ numberToPrice(product?.fee) }}
           </div>
         </view>
-      </view>
-      <view class="action absolute right-0 bottom-0">
-        <button v-if="state === 'add'">选规格</button>
+        <view class="action absolute right-0 bottom-0">
+          <button v-if="state === 'add'">选规格</button>
+        </view>
       </view>
     </view>
   </view>
