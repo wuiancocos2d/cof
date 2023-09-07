@@ -4,6 +4,8 @@
       :current="current"
       :tabList="category_tabs"
       tabDirection='vertical'
+      scroll
+      height="100%"
       @click="handleCategoryClick"
     >
       <AtTabsPane
@@ -13,7 +15,8 @@
         :key="category.productCategoryId"
         :current="current"
         :index="index">
-          <view v-for="product in category.products" :key="product.productId" class="h-24">
+          {{index}}
+          <view v-for="product in category?.products" :key="product.productId" class="tab-content h-24">
             <CategoryListItem :product="product"/>
           </view>
       </AtTabsPane>
