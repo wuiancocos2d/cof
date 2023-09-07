@@ -2,24 +2,17 @@
   <view class="pt-1 container">
     <AtTabs
       :current="current"
-      :tabList="category_tabs"
-      tabDirection='vertical'
       scroll
-      height="100%"
-      @click="handleCategoryClick"
-    >
-      <view v-for="(category,index) in category_tabs"  :key="category.productCategoryId">
-        <AtTabsPane
-          tabDirection='vertical'
-          :current="current"
-          :index="index"
-        >
-          <view class="categoryTitle">{{ category.name }}|{{ index }}|{{ current }}</view>
-          <view v-for="product in category?.products" :key="product.productId" class="tab-content h-24">
-            <CategoryListItem :product="product"/>
-          </view>
-        </AtTabsPane>
-      </view>
+      height='500px'
+      tabDirection='vertical'
+      :tabList="category_tabs"
+      @click="handleCategoryClick">
+      <AtTabsPane v-for="(category,index) in category_tabs" :key="index" tabDirection='vertical' :current="current" :index="0">
+        <view class="title">{{category.name}}</view>
+        <view v-for="product in category.products" :key="product.productId">
+          <CategoryListItem :product="product"/>
+        </view>
+      </AtTabsPane>
     </AtTabs>
   </view>
 </template>
