@@ -17,9 +17,8 @@
           </div>
         </view>
       </view>
-      <view class="action absolute">
+      <view class="action absolute right-0 bottom-0">
         <button v-if="state === 'add'">选规格</button>
-
       </view>
     </view>
   </view>
@@ -40,7 +39,6 @@ export default defineComponent({
   },
   setup(props) {
     const state = ref('add')
-
     function getTags(): string[] {
       if (!isString(props.product?.tags)) return []
       return props.product?.tags.split(';')

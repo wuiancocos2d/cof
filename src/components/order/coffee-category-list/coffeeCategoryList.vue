@@ -8,18 +8,18 @@
       height="100%"
       @click="handleCategoryClick"
     >
-      <AtTabsPane
-        v-for="(category,index) in category_tabs"
-        tabDirection='vertical'
-        class="h-full"
-        :key="category.productCategoryId"
-        :current="current"
-        :index="index">
-          {{index}}
+      <view v-for="(category,index) in category_tabs"  :key="category.productCategoryId">
+        <AtTabsPane
+          tabDirection='vertical'
+          :current="current"
+          :index="index"
+        >
+          <view class="categoryTitle">{{ category.name }}|{{ index }}|{{ current }}</view>
           <view v-for="product in category?.products" :key="product.productId" class="tab-content h-24">
             <CategoryListItem :product="product"/>
           </view>
-      </AtTabsPane>
+        </AtTabsPane>
+      </view>
     </AtTabs>
   </view>
 </template>
@@ -32,6 +32,7 @@ import {getShopID} from "@/config/constance"
 import {useDidShow} from "@tarojs/taro";
 import CategoryListItem from "@/components/order/coffee-category-list/categoryListItem/CategoryListItem.vue";
 import {AllShopItem} from "@/components/order/coffee-category-list/type";
+
 export default {
   name: "CoffeeCategoryList",
   components: {
@@ -39,18 +40,21 @@ export default {
     AtTabsPane,
     CategoryListItem
   },
-  setup(){
+  setup() {
     const category_tabs = ref<AllShopItem[]>([])
     const current = ref<number>(0)
-    async function handleCategoryClick(tabV){
+
+    async function handleCategoryClick(tabV) {
       current.value = tabV
     }
-    async function getCategory(){
+
+    async function getCategory() {
       const res = await productAll(getShopID())
-      if(!Array.isArray(res)) return
-      category_tabs.value = res.map(item=> ({...item,title: item.name}))
+      if (!Array.isArray(res)) return
+      category_tabs.value = res.map(item => ({...item, title: item.name}))
     }
-    useDidShow(async ()=>{
+
+    useDidShow(async () => {
       await getCategory()
     })
     return {
