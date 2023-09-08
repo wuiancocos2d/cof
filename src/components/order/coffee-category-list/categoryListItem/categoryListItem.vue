@@ -17,7 +17,7 @@
           </div>
         </view>
         <view class="action absolute right-0 bottom-0">
-          <button v-if="state === 'add'">选规格</button>
+          <button v-if="state === 'add'" @click="selectSpecification">选规格</button>
         </view>
       </view>
     </view>
@@ -29,6 +29,7 @@ import {defineComponent, PropType, ref} from "vue";
 import {Product} from "@/components/order/coffee-category-list/type";
 import {isString} from "@/utils/is";
 import {numberToPrice} from "@/utils/number";
+import {createDialog} from "@/components/common/dialog/Dialog";
 
 export default defineComponent({
   name: "CategoryListItem",
@@ -43,11 +44,15 @@ export default defineComponent({
       if (!isString(props.product?.tags)) return []
       return props.product?.tags.split(';')
     }
-
+    function selectSpecification() {
+      debugger
+      createDialog({})
+    }
     return {
       state,
       getTags,
-      numberToPrice
+      numberToPrice,
+      selectSpecification
     }
   }
 })
