@@ -29,7 +29,6 @@ import {defineComponent, PropType, ref} from "vue";
 import {Product} from "@/components/order/coffee-category-list/type";
 import {isString} from "@/utils/is";
 import {numberToPrice} from "@/utils/number";
-import {createDialog} from "@/components/common/dialog/utils/Dialog";
 
 export default defineComponent({
   name: "CategoryListItem",
@@ -38,16 +37,15 @@ export default defineComponent({
       type: Object as PropType<Product>
     },
   },
-  setup(props) {
+  emits: ['selectOpt'],
+  setup(props,{emit}) {
     const state = ref('add')
     function getTags(): string[] {
       if (!isString(props.product?.tags)) return []
       return props.product?.tags.split(';')
     }
     function selectSpecification() {
-
-      createDialog({})
-
+      emit('selectOpt',props.product)
     }
     return {
       state,

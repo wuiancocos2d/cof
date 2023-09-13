@@ -6,7 +6,8 @@ export function createDialog(opt){
   const Instance = createApp(Dialog,{
     ...opt
   })
-  document.body.appendChild(mountNode)
+  const app = document.getElementById('App')
+  app.appendChild(mountNode)
   Instance.mount(mountNode)
 }
 

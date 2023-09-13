@@ -10,7 +10,23 @@ export interface Category {
   sort: number
   timestamp: number
 }
+export interface ProductAttrItem{
+  attrItemId: number;
+  cover: string;
+  fee: number;
+  name: string;
+}
+export interface ProductAttr{
+  attrId: number;
+  attrItem: ProductAttrItem[],
+  cover: string;
+  isMustSelect: number;
+  isMuti: number;
+  isRec: number;
+  name: string;
+}
 export interface Product {
+  attr: ProductAttr[],
   cover: string;
   fee: number;
   intro: string;

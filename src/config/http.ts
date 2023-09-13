@@ -1,4 +1,4 @@
-const DOMAIN = 'http://office.zhen-yee.com:8888'
+const DOMAIN = 'https://r.zhen-yee.com'
 export const HTTPSetting ={
   DOMAIN,
 }
