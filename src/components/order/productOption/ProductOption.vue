@@ -1,9 +1,13 @@
 <template>
   <AtModal v-bind="$attrs">
-    <view v-if="product">
-      <view v-for="attr in product.attr" :key="attr.attrId">
+    <view v-if="product?.attr">
+      <view v-for="attr in productAttr" :key="attr.attrId">
         <view class="cover" v-if="attr.cover"><image :src="attr.cover"/></view>
-        <view class="name">{{attr.name}}</view>
+        <AtButton formType='reset'>重置</AtButton>
+        <view>{{attr.name}}</view>
+        <view v-for="item in attr.attrItem">
+          <AtRadio v-model=""  :options="getOpt(item)"></AtRadio>
+        </view>
 
       </view>
     </view>
@@ -11,24 +15,36 @@
 </template>
 
 <script lang="ts">
-import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui-vue3'
-import {PropType, reactive, toRefs} from "vue";
-import {Product} from "@/components/order/coffee-category-list/type";
+import {AtModal, AtForm, AtRadio} from 'taro-ui-vue3'
+import {computed, PropType, reactive, toRefs} from "vue";
+import {Product, ProductAttr, ProductAttrItem} from "@/components/order/coffee-category-list/type";
+
 export default {
   name: "ProductOption",
   components: {
     AtModal,
+    AtForm,
+    AtRadio
   },
   props: {
     product: {
       type: Object as PropType<Product>
     }
   },
-  setup(){
-    const userPrefer = reactive({
-
-    })
+  setup(props){
+    const userPrefer = reactive()
+    const productAttr = computed(()=> props.product?.attr)
+    function getOpt(item: ProductAttrItem){
+      if(!Array.isArray(item)) return []
+      return item.map(i => ({
+        label: i.name,
+        value: i.attrItemId,
+        desc: i.fee
+      }))
+    }
     return {
+      productAttr,
+      getOpt,
       ...toRefs(userPrefer)
     }
   }

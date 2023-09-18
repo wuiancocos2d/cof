@@ -14,7 +14,7 @@
         </view>
       </AtTabsPane>
     </AtTabs>
-    <ProductOption :isOpened="optOpen" :product="selectedProduct"></ProductOption>
+    <ProductOption :isOpened="optOpen" :product="selectedProduct" @close="handleClose"></ProductOption>
   </view>
 </template>
 
@@ -59,12 +59,16 @@ export default {
       selectedProduct.value = product
       optOpen.value = true
     }
+    function handleClose(){
+      optOpen.value = false
+    }
     return {
       category_tabs,
       current,
       optOpen,
       showOpt,
       selectedProduct,
+      handleClose,
       handleCategoryClick
     }
   }
