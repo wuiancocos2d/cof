@@ -6,7 +6,7 @@
         <AtButton formType='reset'>重置</AtButton>
         <view>{{attr.name}}</view>
         <view v-for="item in attr.attrItem">
-          <AtRadio v-model=""  :options="getOpt(item)"></AtRadio>
+          <AtRadio  :options="getOpt(item)"></AtRadio>
         </view>
 
       </view>
