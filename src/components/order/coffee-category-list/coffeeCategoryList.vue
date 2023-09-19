@@ -14,7 +14,7 @@
         </view>
       </AtTabsPane>
     </AtTabs>
-    <ProductOption :isOpened="optOpen" :product="selectedProduct" @close="handleClose"></ProductOption>
+    <ProductOption v-if="optOpen" :isOpened="optOpen" :product="selectedProduct" @close="handleClose"></ProductOption>
   </view>
 </template>
 
