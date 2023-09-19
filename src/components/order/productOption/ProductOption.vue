@@ -1,26 +1,26 @@
 <template>
-  <AtModal v-bind="$attrs">
+  <AtModal v-bind="$attrs" class="full-width w-full min-w-full">
     <view v-if="product?.attr">
       <view v-for="attrItem in productAttr" :key="attrItem.attrId">
         <view class="cover" v-if="attrItem.cover"><image :src="attrItem.cover"/></view>
         <view>{{attrItem.name}}</view>
-        <AtRadio v-model:value="userPrefer[attrItem.attrId]" :options="getOpt(attrItem.attrItem)"></AtRadio>
+        <IRadio v-model:value="userPrefer[attrItem.attrId]" :options="getOpt(attrItem.attrItem)"></IRadio>
       </view>
     </view>
   </AtModal>
 </template>
 
 <script lang="ts">
-import {AtModal, AtForm, AtRadio} from 'taro-ui-vue3'
+import {AtModal} from 'taro-ui-vue3'
 import {computed, onMounted, PropType, reactive, toRefs} from "vue";
 import {Product, ProductAttr, ProductAttrItem} from "@/components/order/coffee-category-list/type";
+import {IRadio} from "@/components/common";
 
 export default {
   name: "ProductOption",
   components: {
     AtModal,
-    AtForm,
-    AtRadio
+    IRadio
   },
   props: {
     product: {
