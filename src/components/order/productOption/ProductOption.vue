@@ -2,9 +2,13 @@
   <AtModal v-bind="$attrs" class="full-width w-full min-w-full">
     <view v-if="product?.attr">
       <view v-for="attrItem in productAttr" :key="attrItem.attrId">
-        <view class="cover" v-if="attrItem.cover"><image :src="attrItem.cover"/></view>
+<!--        <view class="cover" v-if="attrItem.cover"><image :src="attrItem.cover"/></view>-->
         <view>{{attrItem.name}}</view>
-        <IRadio v-model:value="userPrefer[attrItem.attrId]" :options="getOpt(attrItem.attrItem)"></IRadio>
+        <IRadio
+          v-model:value="userPrefer[attrItem.attrId]"
+          :options="getOpt(attrItem.attrItem)">
+        </IRadio>
+
       </view>
     </view>
   </AtModal>
