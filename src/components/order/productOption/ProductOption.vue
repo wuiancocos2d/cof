@@ -8,7 +8,7 @@
           v-model:value="userPrefer[attrItem.attrId]"
           :options="getOpt(attrItem.attrItem)">
         </IRadio>
-
+        <ShopCount></ShopCount>
       </view>
     </view>
   </AtModal>
@@ -19,12 +19,14 @@ import {AtModal} from 'taro-ui-vue3'
 import {computed, onMounted, PropType, reactive, toRefs} from "vue";
 import {Product, ProductAttr, ProductAttrItem} from "@/components/order/coffee-category-list/type";
 import {IRadio} from "@/components/common";
+import ShopCount from "@/components/order/productOption/ShopCount.vue";
 
 export default {
   name: "ProductOption",
   components: {
     AtModal,
-    IRadio
+    IRadio,
+    ShopCount
   },
   props: {
     product: {

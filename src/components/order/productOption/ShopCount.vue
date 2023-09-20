@@ -1,10 +1,15 @@
 <template>
   <view>
     <view class="wrapper">
-      <div class="total">
+      <view class="total">
         总计{{amount}}
-      </div>
-
+      </view>
+      <view class="action">
+        <view class="car">加入购物车</view>
+        <view class="addNum">
+          <AtInputNumber></AtInputNumber>
+        </view>
+      </view>
     </view>
   </view>
 </template>
