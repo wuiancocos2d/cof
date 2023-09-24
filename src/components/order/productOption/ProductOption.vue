@@ -8,8 +8,8 @@
           v-model:value="userPrefer[attrItem.attrId]"
           :options="getOpt(attrItem.attrItem)">
         </IRadio>
-        <ShopCount></ShopCount>
       </view>
+      <ShopCount></ShopCount>
     </view>
   </AtModal>
 </template>

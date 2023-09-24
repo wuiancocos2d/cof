@@ -1,10 +1,10 @@
 <template>
   <view>
-    <view class="wrapper">
+    <view class="wrapper flex flex-row justify-between">
       <view class="total">
         总计{{amount}}
       </view>
-      <view class="action">
+      <view class="action flex flex-row flex-nowrap">
         <view class="car">加入购物车</view>
         <view class="addNum">
           <AtInputNumber></AtInputNumber>
@@ -29,5 +29,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
 </style>
