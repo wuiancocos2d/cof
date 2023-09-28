@@ -9,7 +9,7 @@
           :options="getOpt(attrItem.attrItem)">
         </IRadio>
       </view>
-      <ShopCount></ShopCount>
+      <ShopCount :product="product" :userPrefer="userPrefer"></ShopCount>
     </view>
   </AtModal>
 </template>

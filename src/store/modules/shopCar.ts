@@ -23,13 +23,14 @@ export const carStore = defineStore('carStore',{
         attrItems
       })
     },
-    getItemNum(product: Product,attrItem: ProductAttrItem): number {
+    getItemNum(product: Product,attrItems: ProductAttrItem[]): number {
+      if(!product || attrItems?.length === 0) return 0;
       const filterRes = this.carList.filter(item=> {
         const isProduct = item.product?.productId === product.productId
-        const isSelector = item.attrItems?.filter(attrItem=>{
-
-        })
+        if(!isProduct || item.attrItems?.length !== attrItems?.length) return;
+        return item.attrItems.every(attr1=> attrItems.find(attr2 => attr2.attrItemId === attr1.attrItemId))
       })
+      return filterRes.length
     }
   }
 })

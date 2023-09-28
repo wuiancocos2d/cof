@@ -15,10 +15,16 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from "vue";
+import {defineComponent, PropType, ref} from "vue";
+import {Product} from "@/components/order/coffee-category-list/type";
 
 export default defineComponent({
   name: "shop-count",
+  props: {
+    product: {
+      type: Object as PropType<Product>
+    }
+  },
   setup(){
     const amount = ref(0)
     return {
