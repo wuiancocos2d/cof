@@ -2,7 +2,7 @@ export interface Category {
   code: string;
   comId: number;
   cover: string | null;
-  id: number;
+  id: number;v
   isHidden: number;
   level: number;
   name: string;

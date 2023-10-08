@@ -3,7 +3,7 @@ import {
   AtButton,
   AtInput,
   AtInputNumber
-} from 'taro-ui-vue3/lib'
+} from 'taro-ui-vue3'
 
 const tuv3 = createUI({
   AtButton,

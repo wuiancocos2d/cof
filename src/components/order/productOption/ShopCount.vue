@@ -1,34 +1,42 @@
 <template>
   <view>
-    <view class="wrapper flex flex-row justify-between">
-      <view class="total">
-        总计{{amount}}
-      </view>
-      <view class="action flex flex-row flex-nowrap">
-        <view class="car">加入购物车</view>
-        <view class="addNum">
-          <AtInputNumber></AtInputNumber>
-        </view>
-      </view>
-    </view>
+    <AtInputNumber @change="handleChange"
+                   :step="1"
+                   type="number"
+                   :width="300"
+                   :min="0"
+                   :max="10"
+                   v-model:value ="current"/>
   </view>
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, ref} from "vue";
+import {computed, defineComponent, PropType, ref, watch} from "vue";
 import {Product} from "@/components/order/coffee-category-list/type";
 
 export default defineComponent({
   name: "shop-count",
   props: {
-    product: {
-      type: Object as PropType<Product>
+    price: {
+      type: Number
+    },
+    initNum: {
+      type: Number
     }
   },
-  setup(){
+  setup(props){
     const amount = ref(0)
+    const current = ref(0)
+    function handleChange(v){
+      debugger
+    }
+    watch(()=> props.initNum,(newNum)=>{
+      if(newNum) current.value = newNum
+    },{immediate: true})
     return {
-      amount
+      amount,
+      current,
+      handleChange
     }
   }
 })
