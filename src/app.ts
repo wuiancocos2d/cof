@@ -3,6 +3,7 @@ import './app.less'
 import './tailwindcss.css'
 import './style/index.scss'
 import 'taro-ui-vue3/dist/style/index.scss'
+import '@nutui/nutui-taro/dist/style.css'
 import {setupStore} from "@/store";
 import Taro from "@tarojs/taro";
 import {code2session} from "@/api/app";
